@@ -1,0 +1,133 @@
+﻿<Controls:MetroWindow x:Class="LRFPacketDecoder.SpellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
+        Background="#FF292929" TitleForeground="#FFB4B4B4" WindowStartupLocation="CenterOwner"
+        xmlns:local="clr-namespace:LRFPacketDecoder"
+        mc:Ignorable="d"
+        Title="Spell Info" Height="327" Width="624">
+    <Grid Margin="10">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Champion :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtChampionName" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell ID :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtSpellID" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell Name :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtSpellName" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell Description :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtSpellDesc" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell DynamicTool :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtSpellDynamicTool" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Alternate :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtAlternate" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell Missile :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtMissile" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell Animate Name :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtAnimate" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Spell Flag :" Grid.Row="0" Foreground="#FFB3B3B6" TextAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="asd" Name="txtTextFlag" Grid.Row="0" Grid.Column="2" Foreground="#FFB3B3B6" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>

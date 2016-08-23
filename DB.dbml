@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LOLDB" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=LOLDB;Integrated Security=True" SettingsObjectName="LRFPacketDecoder.Properties.Settings" SettingsPropertyName="LOLDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Champions" Member="Champions">
+    <Type Name="Champion">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChampionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(2500)" CanBeNull="true" />
+      <Column Name="Tips1" Type="System.String" DbType="VarChar(2500)" CanBeNull="true" />
+      <Column Name="Tips2" Type="System.String" DbType="VarChar(2500)" CanBeNull="true" />
+      <Column Name="BaseHP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BaseMP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BaseDamage" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BaseCritChance" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BaseArmor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BaseMoveSpeed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BaseAttackRange" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isMele" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Spell1Name" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Spell2Name" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Spell3Name" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Spell4Name" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="FolderName" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell1" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell2" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell3" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell4" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell5" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell6" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell7" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell8" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell9" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="ExtraSpell10" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Spells" Member="Spells">
+    <Type Name="Spell">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChampionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HashID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SpellName" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(1500)" CanBeNull="true" />
+      <Column Name="DynamicTooltip" Type="System.String" DbType="VarChar(1500)" CanBeNull="true" />
+      <Column Name="AlternateName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="MissileEffect" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="AnimationName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TextFlags" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="HitEffectName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Flags" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CastRange" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="InibinFileName" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Items" Member="Items">
+    <Type Name="Item">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="DynamicTooltip" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="SpellName" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(75)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

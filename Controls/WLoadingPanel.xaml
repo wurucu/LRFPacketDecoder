@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="LRFPacketDecoder.Controls.WLoadingPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LRFPacketDecoder.Controls"
+             mc:Ignorable="d" 
+             xmlns:ctr="clr-namespace:LoadingPanelSample.Controls" 
+             d:DesignHeight="200" d:DesignWidth="500">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF2D2D30" Offset="0"/>
+                <GradientStop Color="#FF252526" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ctr:CircularProgressBar Grid.Row="0" Grid.Column="0"/>
+        <TextBox x:Name="txtTitle" Grid.Column="1" VerticalAlignment="Top" Margin="10" Grid.Row="0" TextWrapping="Wrap" Text="TextBox" FontSize="20" Background="{x:Null}" FontWeight="Bold" Foreground="#FFC4C4C4" />
+        <TextBox x:Name="txtContent" Grid.Column="1" VerticalAlignment="Center" Margin="10" Grid.Row="0" TextWrapping="Wrap" Text="TextBox" Background="{x:Null}" Foreground="#FFC4C4C4" FontSize="15" />
+
+    </Grid>
+</UserControl>

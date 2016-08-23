@@ -1,0 +1,67 @@
+﻿<Controls:MetroWindow x:Class="LRFPacketDecoder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:wct="clr-namespace:LRFPacketDecoder.Controls"
+        xmlns:local="clr-namespace:LRFPacketDecoder"
+        TitleForeground="#FFB4B4B4"  
+        mc:Ignorable="d" 
+        EnableDWMDropShadow="True"
+        ResizeMode="CanResizeWithGrip"
+        WindowTransitionsEnabled="False"   
+        Title="Packet Decode" Height="600" Width="1100" BorderBrush="#FF007ACC" Loaded="MetroWindow_Loaded" Drop="MetroWindow_Drop" >
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="Dosya Seç" Click="button_Click" />
+            <Button Content="Filtrele" Click="buttonara_Click"/>    
+            <Button Content="Kullanıcılar" Click="Button_Click_1"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="330" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3" />
+        </Grid.ColumnDefinitions>
+ 
+        <Grid Grid.Column="0" Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" x:Name="packetList" SelectionMode="Extended" IsReadOnly="True" SelectionUnit="FullRow" MouseDown="dataGrid_MouseDown" MouseLeftButtonUp="dataGrid_MouseLeftButtonUp">
+                <DataGrid.Columns> 
+                    <DataGridTextColumn Width="80" Header="Time" Binding="{Binding STime}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Name" Binding="{Binding SHead}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="70" Header="Size" Binding="{Binding Length}"></DataGridTextColumn>
+                </DataGrid.Columns>
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+
+        </Grid>
+
+
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="3" HorizontalAlignment="Stretch" Background="#2d2d30"/>
+
+        <TabControl Grid.Row="1" Grid.Column="2" x:Name="tabControl" Background="#FF8B5D5D" MouseDown="tabControl_MouseDown" >
+
+        </TabControl>
+
+        <wct:WLoadingPanel x:Name="loading" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Bottom" Height="100" Visibility="Collapsed">
+
+        </wct:WLoadingPanel>
+
+
+    </Grid>
+</Controls:MetroWindow>
