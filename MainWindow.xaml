@@ -14,9 +14,9 @@
         Title="Packet Decode" Height="600" Width="1100" BorderBrush="#FF007ACC" Loaded="MetroWindow_Loaded" Drop="MetroWindow_Drop" >
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Content="Dosya Seç" Click="button_Click" />
-            <Button Content="Filtrele" Click="buttonara_Click"/>    
-            <Button Content="Kullanıcılar" Click="Button_Click_1"/>
+            <Button Content="Open File" Click="button_Click" />
+            <Button Content="Filter Packet" Click="buttonara_Click"/>    
+            <Button Content="Players" Click="Button_Click_1"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     

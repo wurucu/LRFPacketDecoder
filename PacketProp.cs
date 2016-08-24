@@ -29,38 +29,38 @@ namespace ValueConveters
             if (value is Image)
             {
                 var imgC = value as Image;
-                
+
                 var data = (PacketProp)(value as Image).DataContext;
 
                 #region Player
                 if ((data.PType == EPacketPropType.INT || data.PType == EPacketPropType.UINT) && parameter.ToString() == "2")
                 { // Player
-                    if (data.PType == EPacketPropType.INT && data.Value != null) 
+                    if (data.PType == EPacketPropType.INT && data.Value != null)
                         if (Statik.Players.Where(x => x.netid == (int)data.Value).Count() > 0)
-                        { 
+                        {
                             var img = Statik.getIcon(Statik.Players.Where(x => x.netid == (int)data.Value).FirstOrDefault());
                             if (img != null)
                                 imgC.Source = img;
                             return Visibility.Visible;
-                        } 
+                        }
                         else
                         {
                             return Visibility.Collapsed;
                         }
-                            
 
-                    if (data.PType == EPacketPropType.UINT && data.Value != null) 
+
+                    if (data.PType == EPacketPropType.UINT && data.Value != null)
                         if (Statik.Players.Where(x => x.netid == (uint)data.Value).Count() > 0)
                         {
                             var img = Statik.getIcon(Statik.Players.Where(x => x.netid == (uint)data.Value).FirstOrDefault());
                             if (img != null)
                                 imgC.Source = img;
                             return Visibility.Visible;
-                        } 
+                        }
                         else
                         {
                             return Visibility.Collapsed;
-                        } 
+                        }
                 }
                 #endregion
 
@@ -71,11 +71,11 @@ namespace ValueConveters
                         if (Statik.Spells.Where(x => x.HashID == (int)data.Value).Count() > 0)
                         {
                             return Visibility.Visible;
-                        }                            
+                        }
                         else
                         {
                             return Visibility.Collapsed;
-                        } 
+                        }
                     if (data.PType == EPacketPropType.UINT && data.Value != null)
                         if (Statik.Spells.Where(x => x.HashID == (uint)data.Value).Count() > 0)
                             return Visibility.Visible;
@@ -89,7 +89,7 @@ namespace ValueConveters
                 { // Item
                     if (data.PType == EPacketPropType.INT && data.Value != null)
                         if (Statik.Items.Where(x => x.ItemID == (int)data.Value).Count() > 0)
-                        { 
+                        {
                             var img = Statik.getIcon(Statik.Items.Where(x => x.ItemID == (int)data.Value).FirstOrDefault());
                             if (img != null)
                                 imgC.Source = img;
@@ -101,7 +101,7 @@ namespace ValueConveters
                         }
                     if (data.PType == EPacketPropType.UINT && data.Value != null)
                         if (Statik.Items.Where(x => x.ItemID == (uint)data.Value).Count() > 0)
-                        { 
+                        {
                             var img = Statik.getIcon(Statik.Items.Where(x => x.ItemID == (uint)data.Value).FirstOrDefault());
                             if (img != null)
                                 imgC.Source = img;
@@ -387,64 +387,65 @@ namespace LRFPacketDecoder
             MemoryStream ms = new MemoryStream();
             BinaryWriter wrt = new BinaryWriter(ms);
             BinaryReader rdr = new BinaryReader(new MemoryStream(this.packet.Bytes));
-            foreach (var pp in this.Props)
-            {
-                object val = pp.CustomValue != null ? pp.CustomValue : pp.Value;
-                switch (pp.PType)
+            if (this.Props != null)
+                foreach (var pp in this.Props)
                 {
-                    case EPacketPropType.Byte:
-                        wrt.Write((byte)val);
-                        rdr.ReadByte();
-                        break;
-                    case EPacketPropType.Chars:
-                        wrt.Write((char[])val);
-                        rdr.ReadChars(((char[])val).Length);
-                        break;
-                    case EPacketPropType.Bytes:
-                        wrt.Write((byte[])val);
-                        rdr.ReadBytes(pp.Length);
-                        break;
-                    case EPacketPropType.Short:
-                        wrt.Write((short)val);
-                        rdr.ReadInt16();
-                        break;
-                    case EPacketPropType.UShort:
-                        wrt.Write((ushort)val);
-                        rdr.ReadUInt16();
-                        break;
-                    case EPacketPropType.INT:
-                        wrt.Write((int)val);
-                        rdr.ReadInt32();
-                        break;
-                    case EPacketPropType.UINT:
-                        wrt.Write((uint)val);
-                        rdr.ReadUInt32();
-                        break;
-                    case EPacketPropType.Long:
-                        wrt.Write((long)val);
-                        rdr.ReadInt64();
-                        break;
-                    case EPacketPropType.ULong:
-                        wrt.Write((ulong)val);
-                        rdr.ReadUInt64();
-                        break;
-                    case EPacketPropType.SKIP:
-                        wrt.Write((byte[])val);
-                        rdr.ReadBytes(pp.Length);
-                        break;
-                    case EPacketPropType.Float:
-                        wrt.Write((float)val);
-                        rdr.ReadSingle();
-                        break;
-                    case EPacketPropType.Float_Inverse:
-                        wrt.Write((float)val);
-                        rdr.ReadSingle();
-                        break;
-                    default:
-                        break;
-                }
+                    object val = pp.CustomValue != null ? pp.CustomValue : pp.Value;
+                    switch (pp.PType)
+                    {
+                        case EPacketPropType.Byte:
+                            wrt.Write((byte)val);
+                            rdr.ReadByte();
+                            break;
+                        case EPacketPropType.Chars:
+                            wrt.Write((char[])val);
+                            rdr.ReadChars(((char[])val).Length);
+                            break;
+                        case EPacketPropType.Bytes:
+                            wrt.Write((byte[])val);
+                            rdr.ReadBytes(pp.Length);
+                            break;
+                        case EPacketPropType.Short:
+                            wrt.Write((short)val);
+                            rdr.ReadInt16();
+                            break;
+                        case EPacketPropType.UShort:
+                            wrt.Write((ushort)val);
+                            rdr.ReadUInt16();
+                            break;
+                        case EPacketPropType.INT:
+                            wrt.Write((int)val);
+                            rdr.ReadInt32();
+                            break;
+                        case EPacketPropType.UINT:
+                            wrt.Write((uint)val);
+                            rdr.ReadUInt32();
+                            break;
+                        case EPacketPropType.Long:
+                            wrt.Write((long)val);
+                            rdr.ReadInt64();
+                            break;
+                        case EPacketPropType.ULong:
+                            wrt.Write((ulong)val);
+                            rdr.ReadUInt64();
+                            break;
+                        case EPacketPropType.SKIP:
+                            wrt.Write((byte[])val);
+                            rdr.ReadBytes(pp.Length);
+                            break;
+                        case EPacketPropType.Float:
+                            wrt.Write((float)val);
+                            rdr.ReadSingle();
+                            break;
+                        case EPacketPropType.Float_Inverse:
+                            wrt.Write((float)val);
+                            rdr.ReadSingle();
+                            break;
+                        default:
+                            break;
+                    }
 
-            }
+                }
 
             byte[] tmp = new byte[this.packet.Bytes.Length - rdr.BaseStream.Position];
             Array.Copy(this.packet.Bytes, rdr.BaseStream.Position, tmp, 0, tmp.Length);
@@ -457,85 +458,85 @@ namespace LRFPacketDecoder
         public byte[] getBytesEdits()
         {
             MemoryStream ms = new MemoryStream();
-            BinaryWriter wrt = new BinaryWriter(ms); 
+            BinaryWriter wrt = new BinaryWriter(ms);
             foreach (var pp in this.Props)
             {
                 object val = pp.CustomValue != null ? pp.CustomValue : pp.Value;
                 switch (pp.PType)
                 {
                     case EPacketPropType.Byte:
-                        wrt.Write((byte)val); 
+                        wrt.Write((byte)val);
                         break;
                     case EPacketPropType.Chars:
-                        wrt.Write((char[])val); 
+                        wrt.Write((char[])val);
                         break;
                     case EPacketPropType.Bytes:
-                        wrt.Write((byte[])val); 
+                        wrt.Write((byte[])val);
                         break;
                     case EPacketPropType.Short:
-                        wrt.Write((short)val); 
+                        wrt.Write((short)val);
                         break;
                     case EPacketPropType.UShort:
-                        wrt.Write((ushort)val); 
+                        wrt.Write((ushort)val);
                         break;
                     case EPacketPropType.INT:
-                        wrt.Write((int)val); 
+                        wrt.Write((int)val);
                         break;
                     case EPacketPropType.UINT:
-                        wrt.Write((uint)val); 
+                        wrt.Write((uint)val);
                         break;
                     case EPacketPropType.Long:
-                        wrt.Write((long)val); 
+                        wrt.Write((long)val);
                         break;
                     case EPacketPropType.ULong:
-                        wrt.Write((ulong)val); 
+                        wrt.Write((ulong)val);
                         break;
                     case EPacketPropType.SKIP:
-                        wrt.Write((byte[])val); 
+                        wrt.Write((byte[])val);
                         break;
                     case EPacketPropType.Float:
-                        wrt.Write((float)val); 
+                        wrt.Write((float)val);
                         break;
                     case EPacketPropType.Float_Inverse:
-                        wrt.Write((float)val); 
+                        wrt.Write((float)val);
                         break;
                     default:
                         break;
                 }
 
             }
-             
+
 
             wrt.Close();
             return ms.ToArray();
         }
 
         public string getCSharpCode()
-        { 
+        {
             StringBuilder ret = new StringBuilder();
-             
+
             BinaryReader rdr = new BinaryReader(new MemoryStream(this.packet.Bytes));
             foreach (var pp in this.Props)
             {
                 object val = pp.CustomValue != null ? pp.CustomValue : pp.Value;
                 switch (pp.PType)
                 {
-                    case EPacketPropType.Byte: 
+                    case EPacketPropType.Byte:
                         rdr.ReadByte();
                         ret.AppendLine("buffer.Write((byte)" + (byte)val + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.Chars: 
+                    case EPacketPropType.Chars:
                         rdr.ReadChars(((char[])val).Length);
                         break;
-                    case EPacketPropType.Bytes: 
+                    case EPacketPropType.Bytes:
                         ret.Append("buffer.Write(new byte[] {");
                         int indx = 0;
-                        foreach (var byt in (byte[]) val)
+                        foreach (var byt in (byte[])val)
                         {
                             ret.Append((indx == 0 ? "" : " , ") + Convert.ToInt32(byt).ToString());
                             indx++;
                         }
-                        ret.AppendLine("}; // " + pp.Name); 
+                        ret.AppendLine("}; // " + pp.Name);
                         rdr.ReadBytes(pp.Length);
                         break;
                     case EPacketPropType.Short:
@@ -546,30 +547,30 @@ namespace LRFPacketDecoder
                         rdr.ReadUInt16();
                         ret.AppendLine("buffer.Write((ushort)" + (ushort)val + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.INT: 
+                    case EPacketPropType.INT:
                         rdr.ReadInt32();
                         ret.AppendLine("buffer.Write((int)" + (int)val + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.UINT: 
+                    case EPacketPropType.UINT:
                         rdr.ReadUInt32();
                         ret.AppendLine("buffer.Write((uint)" + (uint)val + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.Long: 
+                    case EPacketPropType.Long:
                         rdr.ReadInt64();
                         ret.AppendLine("buffer.Write((long)" + (long)val + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.ULong: 
+                    case EPacketPropType.ULong:
                         rdr.ReadUInt64();
                         ret.AppendLine("buffer.Write((ulong)" + (ulong)val + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.SKIP: 
+                    case EPacketPropType.SKIP:
                         rdr.ReadBytes(pp.Length);
                         break;
-                    case EPacketPropType.Float: 
+                    case EPacketPropType.Float:
                         rdr.ReadSingle();
-                        ret.AppendLine("buffer.Write((float)" + ((float)val).ToString().Replace(",",".") + "); //" + pp.Name);
+                        ret.AppendLine("buffer.Write((float)" + ((float)val).ToString().Replace(",", ".") + "); //" + pp.Name);
                         break;
-                    case EPacketPropType.Float_Inverse: 
+                    case EPacketPropType.Float_Inverse:
                         rdr.ReadSingle();
                         ret.AppendLine("buffer.Write((float)" + (float)val + "); //" + pp.Name);
                         break;
@@ -579,7 +580,7 @@ namespace LRFPacketDecoder
 
             }
 
-            byte[] tmp = new byte[this.packet.Bytes.Length - rdr.BaseStream.Position]; 
+            byte[] tmp = new byte[this.packet.Bytes.Length - rdr.BaseStream.Position];
             if (tmp.Length > 0)
             {
                 ret.Append("buffer.Write(new byte[] {");

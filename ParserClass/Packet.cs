@@ -78,7 +78,7 @@ namespace PcapDecrypt.Json
                 case EnetOpCodes.SEND_RELIABLE:
                     return handleReliable(reader, this.Time, sourcePort > destPort);
                 case EnetOpCodes.SEND_FRAGMENT:
-                    var pck = handleFragment(reader, this.Time, sourcePort > destPort); 
+                    var pck = handleFragment(reader, this.Time, sourcePort > destPort);
                     if (pck != null)
                         return new List<WPacket>() { pck };
                     else
@@ -142,9 +142,9 @@ namespace PcapDecrypt.Json
                 var decrypted = decrypt(packet.ToArray());
 
                 printPacket(decrypted, time, C2S);
-          
+
                 WPacket pck = new WPacket();
-                pck.Time = time; 
+                pck.Time = time;
                 pck.Head = (PacketCmdS2C)decrypted[0];
                 pck.Bytes = decrypted;
                 pck.Length = pck.Bytes.Length;
@@ -216,7 +216,7 @@ namespace PcapDecrypt.Json
                     firstPacket.AddRange(reader.ReadBytes(size - 5));
 
                 logLine("Packet 1, Length " + size);
-                printPacket(firstPacket.ToArray(), time, C2S, false); 
+                printPacket(firstPacket.ToArray(), time, C2S, false);
                 WPacket pck = new WPacket();
                 pck.Time = this.Time;
                 pck.Bytes = firstPacket.ToArray();
@@ -284,7 +284,7 @@ namespace PcapDecrypt.Json
                             {
                                 if (reader.BaseStream.Position + 4 > reader.BaseStream.Length)
                                     break;
-                                    newId = reader.ReadUInt32(true);
+                                newId = reader.ReadUInt32(true);
                             }
                             catch (Exception)
                             {
@@ -410,6 +410,7 @@ namespace PcapDecrypt.Json
             {
                 var buffer = new List<byte>();
                 uint newId = 0;
+                bool netIdChanged = false;
                 byte command;
 
                 var flagsAndLength = reader.ReadByte(); // 6 first bits = size (if not 0xFC), 2 last bits = flags
@@ -418,15 +419,24 @@ namespace PcapDecrypt.Json
                 if ((flagsAndLength & 0x01) > 0)
                 { // additionnal byte, skip command
                     command = opCode;
-                    reader.ReadByte();
+                    if ((flagsAndLength & 0x02) > 0)
+                        reader.ReadByte();
+                    else
+                    {
+                        newId = reader.ReadUInt32(true);
+                        netIdChanged = true;
+                    }
                 }
                 else
                 {
                     command = reader.ReadByte();
                     if ((flagsAndLength & 0x02) > 0)
-                        reader.ReadByte();
+                        reader.ReadByte();                    
                     else
+                    {
                         newId = reader.ReadUInt32(true);
+                        netIdChanged = true;
+                    }
                 }
 
                 if (size == 0x3F)
@@ -434,8 +444,11 @@ namespace PcapDecrypt.Json
 
                 logLine("Packet " + i + ", Length " + (size + 5));
                 buffer.Add(command);
-                if (newId > 0)
+                if (netIdChanged)
+                {
                     buffer.AddRange(BitConverter.GetBytes(newId).Reverse());
+                    netId = newId; 
+                } 
                 else
                     buffer.AddRange(BitConverter.GetBytes(netId).Reverse());
                 buffer.AddRange(reader.ReadBytes(size));

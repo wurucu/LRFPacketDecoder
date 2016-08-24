@@ -23,10 +23,7 @@ using WTool;
 
 namespace LRFPacketDecoder.Editor
 {
-    public enum testenum
-    {
-        asd
-    }
+   
     /// <summary>
     /// Interaction logic for PacketEditor.xaml
     /// </summary>
@@ -68,12 +65,22 @@ namespace LRFPacketDecoder.Editor
             }
         }
 
+        Thread thUpdateHex = null;
         public void UpdateHexEdit(int LastPosition, List<PacketPro.HexStartEnd> poss = null)
         {
+            try
+            {
+                if (thUpdateHex != null)
+                    thUpdateHex.Abort();
+                thUpdateHex = null;
+            }
+            catch (Exception)
+            {  }
+            
             hex1.Document.Blocks.Clear();
             hex2.Document.Blocks.Clear();
 
-            Thread th = new Thread(() =>
+            thUpdateHex = new Thread(() =>
             {
                 StringBuilder sb1 = new StringBuilder();
                 StringBuilder sb2 = new StringBuilder();
@@ -91,7 +98,7 @@ namespace LRFPacketDecoder.Editor
                     setColor(hex2, 0, LastPosition, (Color)ColorConverter.ConvertFromString("#FF3399FF"));
                 }); 
             });
-            th.Start();
+            thUpdateHex.Start();
         }
 
         public void setColor(RichTextBox txt, int startIndex, int endIndex, Color color)

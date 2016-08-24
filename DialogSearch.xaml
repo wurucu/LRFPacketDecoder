@@ -80,8 +80,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Margin="5" x:Name="allselect" Grid.Row="3" Grid.Column="1" Content="Hepsini Seç" Click="allselect_Click" />
-        <Button Margin="5" x:Name="cancel"  Grid.Row="3" Grid.Column="0" Content="İptal" Click="cancel_Click" />
-        <Button Margin="5" x:Name="okey" Grid.Row="3" Grid.Column="2" Content="Tamam" Click="okey_Click" />
+        <Button Margin="5" x:Name="allselect" Grid.Row="3" Grid.Column="1" Content="All Select" Click="allselect_Click" />
+        <Button Margin="5" x:Name="cancel"  Grid.Row="3" Grid.Column="0" Content="Cancel" Click="cancel_Click" />
+        <Button Margin="5" x:Name="okey" Grid.Row="3" Grid.Column="2" Content="Okey" Click="okey_Click" />
     </Grid>
 </Controls:MetroWindow>

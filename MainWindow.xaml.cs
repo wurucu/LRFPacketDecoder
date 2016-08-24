@@ -97,9 +97,8 @@ namespace LRFPacketDecoder
         {
             this.AllowDrop = true;
 
-            //ReplayParser - arg : filename - out : file.json
-            //OpenFile(@"C:\Users\Gokhan\Documents\visual studio 2015\Projects\ReplayDownloader\ReplayDownloader\bin\Debug\download\Ahri\WillKillU2 - Ahri.lrf");
-            OpenFile(@"C:\Users\Gokhan\Documents\Visual Studio 2015\Projects\ReplayDownloader\ReplayDownloader\bin\Debug\download\Aatrox\Kreps - Aatrox.lrf");
+     
+
             Statik.Spells = db.Spells.ToList();
             Statik.Champions = db.Champions.ToList();
             Statik.Items = db.Items.ToList();
@@ -110,8 +109,7 @@ namespace LRFPacketDecoder
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             { 
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                //ReplayFile rf = ReplayFile.Open(files[0]);
-
+                OpenFile(files[0]);
             }
         }
 
@@ -126,7 +124,7 @@ namespace LRFPacketDecoder
 
         public void OpenJSON(string file)
         {
-            loading.Show("Bekleyin..", "Yükleniyor..");
+            loading.Show("Wait..", "Decodes..");
             Thread th = new Thread(() =>
             {
                 var json = File.ReadAllText(file);
@@ -148,7 +146,7 @@ namespace LRFPacketDecoder
 
         public void OpenWDC(string file)
         {
-            loading.Show("Bekleyin..", "Yükleniyor..");
+            loading.Show("Wait..", "Reading..");
             Thread th = new Thread(() =>
             {
                 var json = File.ReadAllText(file);
@@ -165,9 +163,12 @@ namespace LRFPacketDecoder
 
         public void OpenFile(string fileName)
         {
+            if (!File.Exists(fileName))
+                return;
+
             if (fileName.ToLower().EndsWith(".lrf"))
             {
-                loading.Show("Bekleyin..", "Yükleniyor..");
+                loading.Show("Wait..", "Parsing..");
                 string checkWDC = new FileInfo(fileName).Directory.FullName + "/" + Path.GetFileNameWithoutExtension(fileName) + ".wdc";
                 if (File.Exists(checkWDC))
                 {
@@ -204,8 +205,7 @@ namespace LRFPacketDecoder
                 TabItem tbitem = new TabItem() { Header = fileName };
                 tbitem.Content = editor;
                 tabControl.Items.Add(tbitem);
-                tabControl.SelectedItem = tbitem;
-
+                tabControl.SelectedItem = tbitem; 
             }
         }
 
@@ -213,14 +213,14 @@ namespace LRFPacketDecoder
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog(); 
             dlg.DefaultExt = ".lrf,.JSON,.wdc";
-            dlg.Filter = "LRF|*.lrf;*.wdc;*.json|all|*.*";
-            dlg.FileName = @"C:\Users\Gokhan\Documents\visual studio 2015\Projects\ReplayDownloader\ReplayDownloader\bin\Debug\download\";
+            dlg.Filter = "LRF|*.lrf;*.wdc;*.json|all|*.*"; 
             if (dlg.ShowDialog() == true)
             { 
                 OpenFile(dlg.FileName); 
             }
         }
 
+        //search
         private void buttonara_Click(object sender, RoutedEventArgs e)
         {
             if (this.rply == null || this.rply.WPackets == null)
